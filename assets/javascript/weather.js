@@ -2,6 +2,11 @@
 let searchHistory = []; //Empty array for search history
 const queryURL = "https://api.openweathermap.org/data/2.5/forecast?id=524901&APPID=9be0a529a7dd200677c71e4ba94edd63";
 const phxURL = "https://api.openweathermap.org/data/2.5/weather?q=Phoenix&APPID=9be0a529a7dd200677c71e4ba94edd63";
+const austURL = "https://api.openweathermap.org/data/2.5/weather?q=Austin&APPID=9be0a529a7dd200677c71e4ba94edd63";
+const chicURL = "https://api.openweathermap.org/data/2.5/weather?q=Chicago&APPID=9be0a529a7dd200677c71e4ba94edd63";
+const nyURL = "https://api.openweathermap.org/data/2.5/weather?zip=10004&APPID=9be0a529a7dd200677c71e4ba94edd63";
+
+
 const searchVal = $("#searcher").val();
 let now = moment(); //Starts the interval when page loads
 let date = now.format(" (MM/D/YYYY)"); //Format for current month/day/year
@@ -22,7 +27,50 @@ $("#phxBtn").on('click', function() {
         //Display city name/date/icon
         $("#mainstate").append(response.name);
         $("#mainstate").append(date);
-        $("#mainstate").append(response.weather[0].icon); //Displays text but not icon..
-        
+        $("#mainstate").append("<img src='http://openweathermap.org/img/w/" + response.weather[0].icon + ".png' alt='Weather Icon'>");
+      });
+    });
+
+
+    //When clicking the Austin button ...
+$("#austBtn").on('click', function() {
+  //Call the AJAX API for Austin
+      $.ajax({
+       url: austURL,
+      method: "GET"
+  }).then(function(response) {
+        //Display city name/date/icon
+        $("#mainstate").append(response.name);
+        $("#mainstate").append(date);
+        $("#mainstate").append("<img src='http://openweathermap.org/img/w/" + response.weather[0].icon + ".png' alt='Weather Icon'>");
+
+      });
+    });
+
+        //When clicking the Chicago button ...
+$("#chicBtn").on('click', function() {
+  //Call the AJAX API for Austin
+      $.ajax({
+       url: chicURL,
+      method: "GET"
+  }).then(function(response) {
+        //Display city name/date/icon
+        $("#mainstate").append(response.name);
+        $("#mainstate").append(date);
+        $("#mainstate").append("<img src='http://openweathermap.org/img/w/" + response.weather[0].icon + ".png' alt='Weather Icon'>");
+      });
+    });
+
+//When clicking the NY button ...
+$("#nyBtn").on('click', function() {
+  //Call the AJAX API for Austin
+      $.ajax({
+       url: nyURL,
+      method: "GET"
+  }).then(function(response) {
+        //Display city name/date/icon
+        $("#mainstate").append(response.name);
+        $("#mainstate").append(date);
+        $("#mainstate").append("<img src='http://openweathermap.org/img/w/" + response.weather[0].icon + ".png' alt='Weather Icon'>");
       });
     });
