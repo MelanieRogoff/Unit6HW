@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <title>Weather Dashboard</title>
+</head>
+
+<body>
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4">Weather Dashboard</h1>
+        </div>
+    </div>
+
+    <!-- Search bar -->
+    <form class="form-inline active-cyan-4">
+    <h6>Search for a City:</h6>
+        <input class="form-control form-control-sm mr-3 w-75" id="searcher" type="text" placeholder="Search"
+          aria-label="Search">
+        <i class="fas fa-search" aria-hidden="true"></i>
+    </form>
+
+<!--Buttons for States-->
+<div class="btn-group-vertical statebuttons">
+    <button type="button" class="btn btn-secondary" id="austBtn">Austin</button>
+    <button type="button" class="btn btn-secondary">Chicago</button>
+    <button type="button" class="btn btn-secondary">New York</button>
+    <button type="button" class="btn btn-secondary">Orlando</button>
+    <button type="button" class="btn btn-secondary">San Francisco</button>
+    <button type="button" class="btn btn-secondary" id="phxBtn">Phoenix</button>
+    <button type="button" class="btn btn-secondary">Denver</button>
+    <button type="button" class="btn btn-secondary">London</button>
+
+  </div>
+<!--Main card-->
+<div class="card onestateinfo mb-3">
+        <div class="row no-gutters">
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title" id="mainstate"></h5>
+              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    <br><br>
+<!--5 Day Forecast Title-->
+<h6 class="fiveDay">5-Day Forecast:</h6>
+    <!--First card-->
+    <div class="card cards text-white" style="max-width: 18rem;">
+            <div class="card-header">TODAY'S DATE</div>
+            <div class="card-body">
+              <h6 class="card-title">PIC HERE</h6>
+              <p class="card-text">TEMP & HUMIDITY</p>
+            </div>
+          </div>
+    <!--Second card-->
+          <div class="card cards text-white" style="max-width: 18rem;">
+                <div class="card-header">TODAY'S DATE</div>
+                <div class="card-body">
+                  <h6 class="card-title">PIC HERE</h6>
+                  <p class="card-text">TEMP & HUMIDITY</p>
+                </div>
+              </div>
+<!--Third card-->
+<div class="card cards text-white" style="max-width: 18rem;">
+        <div class="card-header">TODAY'S DATE</div>
+        <div class="card-body">
+          <h6 class="card-title">PIC HERE</h6>
+          <p class="card-text">TEMP & HUMIDITY</p>
+        </div>
+      </div>
+
+      <!--Fourth card-->
+      <div class="card cards text-white" style="max-width: 18rem;">
+            <div class="card-header">TODAY'S DATE</div>
+            <div class="card-body">
+              <h6 class="card-title">PIC HERE</h6>
+              <p class="card-text">TEMP & HUMIDITY</p>
+            </div>
+          </div>
+       
+          <!--Fifth card-->
+          <div class="card cards text-white" style="max-width: 18rem;">
+                <div class="card-header">TODAY'S DATE</div>
+                <div class="card-body">
+                  <h6 class="card-title">PIC HERE</h6>
+                  <p class="card-text">TEMP & HUMIDITY</p>
+                </div>
+              </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="assets/javascript/weather.js">
+
+    </script>
+      </div>
+    </div>
+</body>
+
+</html>

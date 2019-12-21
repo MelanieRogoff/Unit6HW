@@ -1,0 +1,43 @@
+.jumbotron {
+    background-image: linear-gradient(#ff99cc, #ff0080);
+  color: white;
+  text-align: center;
+  height: 170px;
+}
+
+.active-cyan-4 { /*Search title + button*/
+    width: 140px;
+    margin-top: -10px;
+    margin-left: 20px;
+}
+
+.cards { /*The 5 Day Forecast Cards */
+    display: inline-block;
+    width: 120px;
+    margin-left: 70px;
+    margin-top: 10px;
+    height: 120px;
+    background-color: #cc0066;
+}
+
+.fiveDay {
+    margin-top: 100px;
+    margin-left: 70px;
+}
+.onestateinfo { /*Main card*/
+    width: 480px;
+    text-align: center;
+    height: 180px;
+    margin-left: 200px;
+    display: inline-block;
+}
+
+.statebuttons {
+    display: inline-block;
+    width: 120px;
+    height: 150px;
+    margin-left: 15px;
+    margin-top: 20px;
+    background-color: #cc0066;
+    border-color: white;
+}
