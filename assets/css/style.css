@@ -32,6 +32,9 @@
     display: inline-block;
 }
 
+.firstFont {
+    font-size: 12px;
+}
 .statebuttons {
     display: inline-block;
     width: 120px;

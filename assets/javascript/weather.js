@@ -18,8 +18,42 @@ const sfUV = "https://api.openweathermap.org/data/2.5/uvi?&appid=9be0a529a7dd200
 const denUV = "https://api.openweathermap.org/data/2.5/uvi?&appid=9be0a529a7dd200677c71e4ba94edd63&lat=39&lon=104";
 const ldnUV = "https://api.openweathermap.org/data/2.5/uvi?&appid=9be0a529a7dd200677c71e4ba94edd63&lat=51&lon=0.12";
 const searchVal = $("#searcher").val(); //Value of search button
+const phxFive = "https://api.openweathermap.org/data/2.5/forecast?zip=85001&appid=9be0a529a7dd200677c71e4ba94edd63";
 let now = moment(); //Starts the interval when page loads
 let date = now.format(" (MM/D/YYYY)"); //Format for current month/day/year
+//Get tomorrow's date:
+function tomorrow() {
+  const today = moment();
+  const tomorrow = today.add('days', 1);
+  return moment(tomorrow).format(" (MM/D/YYYY)");
+}
+//Get the day after tomorrow
+function twoDayForescast() {
+  const todayy = moment();
+  const tomorroww = todayy.add('days', 2);
+  return moment(tomorroww).format(" (MM/D/YYYY)");
+}
+
+//Get the third day after
+function threeDayForecast() {
+  const today3 = moment();
+  const tomorrow3 = today3.add('days', 3);
+  return moment(tomorrow3).format(" (MM/D/YYYY)");
+}
+
+//Get the fourth day after
+function fourDayForecast() {
+  const today4 = moment();
+  const tomorrow4 = today4.add('days', 4);
+  return moment(tomorrow4).format(" (MM/D/YYYY)");
+}
+
+//Get the fifth day after
+function fiveDayForecast() {
+  const today5 = moment();
+  const tomorrow5 = today5.add('days', 5);
+  return moment(tomorrow5).format(" (MM/D/YYYY)");
+}
 
 //Pushing the value of the text input into the search history array
 searchHistory.push(searchVal); 
@@ -30,18 +64,36 @@ $("#phxBtn").on('click', function() {
        url: phxURL,
       method: "GET"
   }).then(function(response) {
-        //Display city name/date/icon
-        $("#mainstate").empty();
-        $("#mainpara").empty();
+        emptyCards(); //Essentially a page refresh
         $("#mainstate").append(response.name);
         $("#mainstate").append(date);
         $("#mainstate").append("<img src='http://openweathermap.org/img/w/" + response.weather[0].icon + ".png' alt='Weather Icon'>");
-        $("#mainpara").append("Temperature: " + response.main.temp); 
+        $("#mainpara").append("Temperature: " + response.main.temp +" °F"); 
         $("#mainpara").append("<p>" + "Humidity: " + response.main.humidity + "%"); 
         $("#mainpara").append("<p>" + "Wind Speed: " + response.wind.speed + "MPH"); 
         $("#mainpara").append("<p>" + "UV Index: " + "<button type='button' class='btn btn-danger'>" + phxUV +"</button>"); //Currently only shows the actual link - look into changing this
       });
     });
+
+//PHOENIX 5 Day Weather Forecast
+$("#phxBtn").on('click', function() {
+  $.ajax({
+   url: phxFive,
+  method: "GET"
+}).then(function(response) {
+    $("#oneDay").append(response.city.name);
+    $("#oneDay").append(tomorrow());
+   // $("#oneDay").append("<img src='http://openweathermap.org/img/w/" + response.list.list.weather.icon + ".png' alt='Weather Icon'>");
+    $("#twoDay").append(response.city.name);
+    $("#twoDay").append(twoDayForescast());
+    $("#threeDay").append(response.city.name);
+    $("#threeDay").append(threeDayForecast());
+    $("#fourDay").append(response.city.name);
+    $("#fourDay").append(fourDayForecast());
+    $("#fiveDay").append(response.city.name);
+    $("#fiveDay").append(fiveDayForecast());
+  });
+});
 
 //AUSTIN button
 $("#austBtn").on('click', function() {
@@ -49,13 +101,11 @@ $("#austBtn").on('click', function() {
        url: austURL,
       method: "GET"
   }).then(function(response) {
-        //Display city name/date/icon
-        $("#mainstate").empty();
-        $("#mainpara").empty();
+        emptyCards();
         $("#mainstate").append(response.name);
         $("#mainstate").append(date);
         $("#mainstate").append("<img src='http://openweathermap.org/img/w/" + response.weather[0].icon + ".png' alt='Weather Icon'>");
-        $("#mainpara").append("Temperature: " + response.main.temp); 
+        $("#mainpara").append("Temperature: " + response.main.temp +" °F"); 
         $("#mainpara").append("<p>" + "Humidity: " + response.main.humidity + "%"); 
         $("#mainpara").append("<p>" + "Wind Speed: " + response.wind.speed + "MPH"); 
         $("#mainpara").append("<p>" + "UV Index: " + "<button type='button' class='btn btn-danger'>" + austUV +"</button>"); //Currently only shows the actual link - look into changing this
@@ -68,13 +118,11 @@ $("#chicBtn").on('click', function() {
        url: chicURL,
       method: "GET"
   }).then(function(response) {
-        //Display city name/date/icon
-        $("#mainstate").empty();
-        $("#mainpara").empty();
+        emptyCards();
         $("#mainstate").append(response.name);
         $("#mainstate").append(date);
         $("#mainstate").append("<img src='http://openweathermap.org/img/w/" + response.weather[0].icon + ".png' alt='Weather Icon'>");
-        $("#mainpara").append("Temperature: " + response.main.temp); 
+        $("#mainpara").append("Temperature: " + response.main.temp +" °F"); 
         $("#mainpara").append("<p>" + "Humidity: " + response.main.humidity + "%"); 
         $("#mainpara").append("<p>" + "Wind Speed: " + response.wind.speed + "MPH"); 
         $("#mainpara").append("<p>" + "UV Index: " + "<button type='button' class='btn btn-danger'>" + chicUV +"</button>"); //Currently only shows the actual link - look into changing this
@@ -87,13 +135,11 @@ $("#nyBtn").on('click', function() {
        url: nyURL,
       method: "GET"
   }).then(function(response) {
-        //Display city name/date/icon
-        $("#mainstate").empty();
-        $("#mainpara").empty();
+        emptyCards();
         $("#mainstate").append(response.name);
         $("#mainstate").append(date);
         $("#mainstate").append("<img src='http://openweathermap.org/img/w/" + response.weather[0].icon + ".png' alt='Weather Icon'>");
-        $("#mainpara").append("Temperature: " + response.main.temp); 
+        $("#mainpara").append("Temperature: " + response.main.temp +" °F"); 
         $("#mainpara").append("<p>" + "Humidity: " + response.main.humidity + "%"); 
         $("#mainpara").append("<p>" + "Wind Speed: " + response.wind.speed + "MPH"); 
         $("#mainpara").append("<p>" + "UV Index: " + "<button type='button' class='btn btn-danger'>" + nyUV +"</button>"); //Currently only shows the actual link - look into changing this
@@ -106,13 +152,11 @@ $("#orlandoBtn").on('click', function() {
        url: orlURL,
       method: "GET"
   }).then(function(response) {
-        //Display city name/date/icon
-        $("#mainstate").empty();
-        $("#mainpara").empty();
+        emptyCards();
         $("#mainstate").append(response.name);
         $("#mainstate").append(date);
         $("#mainstate").append("<img src='http://openweathermap.org/img/w/" + response.weather[0].icon + ".png' alt='Weather Icon'>");
-        $("#mainpara").append("Temperature: " + response.main.temp); 
+        $("#mainpara").append("Temperature: " + response.main.temp +" °F"); 
         $("#mainpara").append("<p>" + "Humidity: " + response.main.humidity + "%"); 
         $("#mainpara").append("<p>" + "Wind Speed: " + response.wind.speed + "MPH"); 
         $("#mainpara").append("<p>" + "UV Index: " + "<button type='button' class='btn btn-danger'>" + orUV +"</button>"); //Currently only shows the actual link - look into changing this
@@ -125,12 +169,11 @@ $("#sfBtn").on('click', function() {
        url: sfURL,
       method: "GET"
   }).then(function(response) {
-        $("#mainstate").empty();
-        $("#mainpara").empty();
+        emptyCards();
         $("#mainstate").append(response.name);
         $("#mainstate").append(date);
         $("#mainstate").append("<img src='http://openweathermap.org/img/w/" + response.weather[0].icon + ".png' alt='Weather Icon'>");
-        $("#mainpara").append("Temperature: " + response.main.temp); 
+        $("#mainpara").append("Temperature: " + response.main.temp +" °F"); 
         $("#mainpara").append("<p>" + "Humidity: " + response.main.humidity + "%"); 
         $("#mainpara").append("<p>" + "Wind Speed: " + response.wind.speed + "MPH"); 
         $("#mainpara").append("<p>" + "UV Index: " + "<button type='button' class='btn btn-danger'>" + sfUV +"</button>"); //Currently only shows the actual link - look into changing this
@@ -143,13 +186,11 @@ $("#denBtn").on('click', function() {
        url: denURL,
       method: "GET"
   }).then(function(response) {
-        //Display city name/date/icon
-        $("#mainstate").empty();
-        $("#mainpara").empty();
+        emptyCards();
         $("#mainstate").append(response.name);
         $("#mainstate").append(date);
         $("#mainstate").append("<img src='http://openweathermap.org/img/w/" + response.weather[0].icon + ".png' alt='Weather Icon'>");
-        $("#mainpara").append("Temperature: " + response.main.temp); 
+        $("#mainpara").append("Temperature: " + response.main.temp +" °F"); 
         $("#mainpara").append("<p>" + "Humidity: " + response.main.humidity + "%"); 
         $("#mainpara").append("<p>" + "Wind Speed: " + response.wind.speed + "MPH"); 
         $("#mainpara").append("<p>" + "UV Index: " + "<button type='button' class='btn btn-danger'>" + denUV +"</button>"); //Currently only shows the actual link - look into changing this
@@ -162,15 +203,33 @@ $("#ldnBtn").on('click', function() {
        url: ldnURL,
       method: "GET"
   }).then(function(response) {
-        //Display city name/date/icon
-        $("#mainstate").empty();
-        $("#mainpara").empty();
+        emptyCards();
         $("#mainstate").append(response.name);
         $("#mainstate").append(date);
         $("#mainstate").append("<img src='http://openweathermap.org/img/w/" + response.weather[0].icon + ".png' alt='Weather Icon'>");
-        $("#mainpara").append("Temperature: " + response.main.temp); 
+        $("#mainpara").append("Temperature: " + response.main.temp +" °F"); 
         $("#mainpara").append("<p>" + "Humidity: " + response.main.humidity + "%"); 
         $("#mainpara").append("<p>" + "Wind Speed: " + response.wind.speed + "MPH"); 
         $("#mainpara").append("<p>" + "UV Index: " + "<button type='button' class='btn btn-danger'>" + ldnUV +"</button>"); //Currently only shows the actual link - look into changing this
      });
     });
+
+function emptyCards() {
+  $("#mainstate").empty(); //Main Title Emptying
+  $("#mainpara").empty(); //Main paragraph Emptying
+  $("#oneDay").empty(); //5-Day Forecast Card Emptying
+  $("#onePic").empty(); //5-Day Forecast Card Emptying
+  $("#oneTemp").empty(); //5-Day Forecast Card Emptying
+  $("#twoDay").empty(); //5-Day Forecast Card Emptying
+  $("#twoPic").empty(); //5-Day Forecast Card Emptying
+  $("#twoTemp").empty(); //5-Day Forecast Card Emptying
+  $("#threeDay").empty(); //5-Day Forecast Card Emptying
+  $("#threePic").empty(); //5-Day Forecast Card Emptying
+  $("#threeTemp").empty(); //5-Day Forecast Card Emptying
+  $("#fourDay").empty(); //5-Day Forecast Card Emptying
+  $("#fourPic").empty(); //5-Day Forecast Card Emptying
+  $("#fourTemp").empty(); //5-Day Forecast Card Emptying
+  $("#fiveDay").empty(); //5-Day Forecast Card Emptying
+  $("#fivePic").empty(); //5-Day Forecast Card Emptying
+  $("#fiveTemp").empty(); //5-Day Forecast Card Emptying
+}
