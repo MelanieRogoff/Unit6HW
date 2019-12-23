@@ -18,41 +18,41 @@ const sfUV = "https://api.openweathermap.org/data/2.5/uvi?&appid=9be0a529a7dd200
 const denUV = "https://api.openweathermap.org/data/2.5/uvi?&appid=9be0a529a7dd200677c71e4ba94edd63&lat=39&lon=104";
 const ldnUV = "https://api.openweathermap.org/data/2.5/uvi?&appid=9be0a529a7dd200677c71e4ba94edd63&lat=51&lon=0.12";
 const searchVal = $("#searcher").val(); //Value of search button
-const phxFive = "https://api.openweathermap.org/data/2.5/forecast?zip=85001&appid=9be0a529a7dd200677c71e4ba94edd63";
+const phxFive = "https://api.openweathermap.org/data/2.5/forecast?zip=85001&appid=9be0a529a7dd200677c71e4ba94edd63&units=imperial";
 let now = moment(); //Starts the interval when page loads
 let date = now.format(" (MM/D/YYYY)"); //Format for current month/day/year
 //Get tomorrow's date:
 function tomorrow() {
   const today = moment();
   const tomorrow = today.add('days', 1);
-  return moment(tomorrow).format(" (MM/D/YYYY)");
+  return moment(tomorrow).format(" MM/D/YYYY");
 }
 //Get the day after tomorrow
 function twoDayForescast() {
   const todayy = moment();
   const tomorroww = todayy.add('days', 2);
-  return moment(tomorroww).format(" (MM/D/YYYY)");
+  return moment(tomorroww).format(" MM/D/YYYY");
 }
 
 //Get the third day after
 function threeDayForecast() {
   const today3 = moment();
   const tomorrow3 = today3.add('days', 3);
-  return moment(tomorrow3).format(" (MM/D/YYYY)");
+  return moment(tomorrow3).format(" MM/D/YYYY");
 }
 
 //Get the fourth day after
 function fourDayForecast() {
   const today4 = moment();
   const tomorrow4 = today4.add('days', 4);
-  return moment(tomorrow4).format(" (MM/D/YYYY)");
+  return moment(tomorrow4).format(" MM/D/YYYY");
 }
 
 //Get the fifth day after
 function fiveDayForecast() {
   const today5 = moment();
   const tomorrow5 = today5.add('days', 5);
-  return moment(tomorrow5).format(" (MM/D/YYYY)");
+  return moment(tomorrow5).format(" MM/D/YYYY");
 }
 
 //Pushing the value of the text input into the search history array
@@ -81,17 +81,26 @@ $("#phxBtn").on('click', function() {
    url: phxFive,
   method: "GET"
 }).then(function(response) {
-    $("#oneDay").append(response.city.name);
     $("#oneDay").append(tomorrow());
-   // $("#oneDay").append("<img src='http://openweathermap.org/img/w/" + response.list.list.weather.icon + ".png' alt='Weather Icon'>");
-    $("#twoDay").append(response.city.name);
+   $("#oneDay").append("<p>" + "<img src='http://openweathermap.org/img/w/" + response.list[0].weather[0].icon + ".png' alt='Weather Icon'>"  + "</p>");
+    $("#oneDay").append("Temp: " + response.list[0].main.temp +" °F");
+    $("#oneDay").append("<p>" + "Humidity: " + response.list[0].main.humidity + "%"); 
     $("#twoDay").append(twoDayForescast());
-    $("#threeDay").append(response.city.name);
+    $("#twoDay").append("<p>" + "<img src='http://openweathermap.org/img/w/" + response.list[1].weather[0].icon + ".png' alt='Weather Icon'>" + "</p>");
+    $("#twoDay").append("Temp: " + response.list[1].main.temp +" °F");
+    $("#twoDay").append("<p>" + "Humidity: " + response.list[1].main.humidity + "%"); 
     $("#threeDay").append(threeDayForecast());
-    $("#fourDay").append(response.city.name);
+    $("#threeDay").append("<p>" + "<img src='http://openweathermap.org/img/w/" + response.list[2].weather[0].icon + ".png' alt='Weather Icon'>" + "</p>");
+    $("#threeDay").append("Temp: " + response.list[2].main.temp +" °F");
+    $("#threeDay").append("<p>" + "Humidity: " + response.list[2].main.humidity + "%"); 
     $("#fourDay").append(fourDayForecast());
-    $("#fiveDay").append(response.city.name);
+    $("#fourDay").append("<p>" + "<img src='http://openweathermap.org/img/w/" + response.list[3].weather[0].icon + ".png' alt='Weather Icon'>" + "</p>");
+    $("#fourDay").append("Temp: " + response.list[3].main.temp +" °F");
+    $("#fourDay").append("<p>" + "Humidity: " + response.list[3].main.humidity + "%"); 
     $("#fiveDay").append(fiveDayForecast());
+    $("#fiveDay").append("<p>" + "<img src='http://openweathermap.org/img/w/" + response.list[4].weather[0].icon + ".png' alt='Weather Icon'>" + "</p>");
+    $("#fiveDay").append("Temp: " + response.list[4].main.temp +" °F");
+    $("#fiveDay").append("<p>" + "Humidity: " + response.list[4].main.humidity + "%"); 
   });
 });
 
