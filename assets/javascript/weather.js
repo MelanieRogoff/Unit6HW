@@ -23,11 +23,45 @@ const denUV = "https://api.openweathermap.org/data/2.5/uvi?&appid=9be0a529a7dd20
 const denFive = "https://api.openweathermap.org/data/2.5/forecast?zip=80014&appid=9be0a529a7dd200677c71e4ba94edd63&units=imperial";
 const ldnURL = "https://api.openweathermap.org/data/2.5/weather?q=London&APPID=9be0a529a7dd200677c71e4ba94edd63&units=imperial";
 const ldnUV = "https://api.openweathermap.org/data/2.5/uvi?&appid=9be0a529a7dd200677c71e4ba94edd63&lat=51&lon=0.12";
-const ldnFive = "https://api.openweathermap.org/data/2.5/uvi?&appid=9be0a529a7dd200677c71e4ba94edd63&lat=51&lon=0.12&units=imperial";
+const ldnFive = "https://api.openweathermap.org/data/2.5/forecast?lat=51&lon=.12&appid=9be0a529a7dd200677c71e4ba94edd63&units=imperial";
 let now = moment(); //Starts the interval when page loads
 let date = now.format(" (MM/D/YYYY)"); //Format for current month/day/year
 let searchHistory = []; //Empty array for search history
-const searchVal = $("#searcher").val(); //Value of search button
+const searchVal = $("#searcher").text(); //Value of search button
 //Pushing the value of the text input into the search history array
 searchHistory.push(searchVal); 
 
+
+$("#searchBtn").click(function () { //When Save button is clicked ... 
+  $('input[type="text"]').each(function () { //For each input type that is text ...
+      const id = $(this).attr('id'); //Grab this input text's id
+      const value = $(this).val(); //Get the value of this and save it into the const value
+      localStorage.setItem(id, value); //Save the input text's id (id) and the value of this (value) into localStorage
+      newPlace();
+    });
+});
+
+$('input[type="text"]').each(function () { //For each input type that is text ...
+  const getting = $(this).attr('id'); //This says that for each input of text, grab this input text's id
+  const letsGrab = localStorage.getItem(getting); //Put that id in localStorage to grab the value
+  document.getElementById(getting).value = letsGrab; //This says that the empty value in the id is being replaced by what's in letsGrab
+});
+
+
+ 
+const anyPlace = "https://api.openweathermap.org/data/2.5/forecast?id=524901&APPID=9be0a529a7dd200677c71e4ba94edd63";
+$("#searchBtn").on('click', function() {
+  $.ajax({
+   url: anyPlace,
+  method: "GET"
+}).then(function(response) {
+    emptyCards(); //Essentially a page refresh
+    $("#mainstate").append(response.name);
+    $("#mainstate").append(date);
+    $("#mainstate").append("<img src='http://openweathermap.org/img/w/" + response.weather[0].icon + ".png' alt='Weather Icon'>");
+    $("#mainpara").append("Temperature: " + response.main.temp +" °F"); 
+    $("#mainpara").append("<p>" + "Humidity: " + response.main.humidity + "%"); 
+    $("#mainpara").append("<p>" + "Wind Speed: " + response.wind.speed + "MPH"); 
+    $("#mainpara").append("<p>" + "UV Index: " + "<button type='button' class='btn btn-danger'>" + phxUV +"</button>"); //Currently only shows the actual link - look into changing this
+  });
+});
