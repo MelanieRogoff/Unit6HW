@@ -1,34 +1,39 @@
 //Get tomorrow's date:
 function tomorrow() {
-    const today = moment();
-    const tomorrow = today.add('days', 1);
+    const tomorrow = moment().add('days', 1);
     return moment(tomorrow).format(" MM/D/YYYY");
   }
   //Get the day after tomorrow
   function twoDayForescast() {
-    const todayy = moment();
-    const tomorroww = todayy.add('days', 2);
+    const tomorroww = moment().add('days', 2);
     return moment(tomorroww).format(" MM/D/YYYY");
   }
   //Get the third day after
   function threeDayForecast() {
-    const today3 = moment();
-    const tomorrow3 = today3.add('days', 3);
+    const tomorrow3 = moment().add('days', 3);
     return moment(tomorrow3).format(" MM/D/YYYY");
   }
   //Get the fourth day after
   function fourDayForecast() {
-    const today4 = moment();
-    const tomorrow4 = today4.add('days', 4);
+    const tomorrow4 = moment().add('days', 4);
     return moment(tomorrow4).format(" MM/D/YYYY");
   }
   //Get the fifth day after
   function fiveDayForecast() {
-    const today5 = moment();
-    const tomorrow5 = today5.add('days', 5);
+    const tomorrow5 = moment().add('days', 5);
     return moment(tomorrow5).format(" MM/D/YYYY");
   }
   
+//PHX UV AJAX CALL 
+$("#phxBtn").on('click', function() {
+  $.ajax({
+   url: phxUV,
+  method: "GET" //this gets the url of phxUV
+}).then(function(response) { //response returns the full object of the url
+    $("#mainpara").append("<p>" + "UV Index: " + "<button type='button' class='btn btn-danger'>" + response.value +"</button>"); 
+  });
+});
+
   //PHOENIX Button
 $("#phxBtn").on('click', function() {
       $.ajax({
@@ -42,7 +47,6 @@ $("#phxBtn").on('click', function() {
         $("#mainpara").append("Temperature: " + response.main.temp +" °F"); 
         $("#mainpara").append("<p>" + "Humidity: " + response.main.humidity + "%"); 
         $("#mainpara").append("<p>" + "Wind Speed: " + response.wind.speed + "MPH"); 
-        $("#mainpara").append("<p>" + "UV Index: " + "<button type='button' class='btn btn-danger'>" + phxUV +"</button>"); //Currently only shows the actual link - look into changing this
       });
     });
 
@@ -88,7 +92,6 @@ $("#austBtn").on('click', function() {
         $("#mainpara").append("Temperature: " + response.main.temp +" °F"); 
         $("#mainpara").append("<p>" + "Humidity: " + response.main.humidity + "%"); 
         $("#mainpara").append("<p>" + "Wind Speed: " + response.wind.speed + "MPH"); 
-        $("#mainpara").append("<p>" + "UV Index: " + "<button type='button' class='btn btn-danger'>" + austUV +"</button>"); //Currently only shows the actual link - look into changing this
       });
     });
 
@@ -121,6 +124,16 @@ $("#austBtn").on('click', function() {
   });
 });
 
+//AUSTIN UV AJAX CALL 
+$("#austBtn").on('click', function() {
+  $.ajax({
+   url: austUV,
+  method: "GET" //this gets the url of phxUV
+}).then(function(response) { //response returns the full object of the url
+    $("#mainpara").append("<p>" + "UV Index: " + "<button type='button' class='btn btn-danger'>" + response.value +"</button>"); 
+  });
+});
+
 //CHICAGO Button
 $("#chicBtn").on('click', function() {
       $.ajax({
@@ -134,7 +147,6 @@ $("#chicBtn").on('click', function() {
         $("#mainpara").append("Temperature: " + response.main.temp +" °F"); 
         $("#mainpara").append("<p>" + "Humidity: " + response.main.humidity + "%"); 
         $("#mainpara").append("<p>" + "Wind Speed: " + response.wind.speed + "MPH"); 
-        $("#mainpara").append("<p>" + "UV Index: " + "<button type='button' class='btn btn-danger'>" + chicUV +"</button>"); //Currently only shows the actual link - look into changing this
       });
     });
 
@@ -167,6 +179,16 @@ $("#chicBtn").on('click', function() {
   });
 });    
 
+//CHICAGO UV AJAX CALL 
+$("#chicBtn").on('click', function() {
+  $.ajax({
+   url: chicUV,
+  method: "GET" //this gets the url of phxUV
+}).then(function(response) { //response returns the full object of the url
+    $("#mainpara").append("<p>" + "UV Index: " + "<button type='button' class='btn btn-danger'>" + response.value +"</button>"); 
+  });
+});
+
 //NY Button
 $("#nyBtn").on('click', function() {
       $.ajax({
@@ -180,7 +202,6 @@ $("#nyBtn").on('click', function() {
         $("#mainpara").append("Temperature: " + response.main.temp +" °F"); 
         $("#mainpara").append("<p>" + "Humidity: " + response.main.humidity + "%"); 
         $("#mainpara").append("<p>" + "Wind Speed: " + response.wind.speed + "MPH"); 
-        $("#mainpara").append("<p>" + "UV Index: " + "<button type='button' class='btn btn-danger'>" + nyUV +"</button>"); //Currently only shows the actual link - look into changing this
       });
     });
 
@@ -212,6 +233,17 @@ $("#nyBtn").on('click', function() {
     $("#fiveDay").append("<p>" + "Humidity: " + response.list[4].main.humidity + "%"); 
   });
 });  
+
+//NEW YORK UV AJAX CALL 
+$("#nyBtn").on('click', function() {
+  $.ajax({
+   url: nyUV,
+  method: "GET" //this gets the url of phxUV
+}).then(function(response) { //response returns the full object of the url
+    $("#mainpara").append("<p>" + "UV Index: " + "<button type='button' class='btn btn-danger'>" + response.value +"</button>"); 
+  });
+});
+
 //ORLANDO Button
 $("#orlandoBtn").on('click', function() {
       $.ajax({
@@ -225,7 +257,6 @@ $("#orlandoBtn").on('click', function() {
         $("#mainpara").append("Temperature: " + response.main.temp +" °F"); 
         $("#mainpara").append("<p>" + "Humidity: " + response.main.humidity + "%"); 
         $("#mainpara").append("<p>" + "Wind Speed: " + response.wind.speed + "MPH"); 
-        $("#mainpara").append("<p>" + "UV Index: " + "<button type='button' class='btn btn-danger'>" + orUV +"</button>"); //Currently only shows the actual link - look into changing this
      });
     });
 
@@ -257,6 +288,17 @@ $("#orlandoBtn").on('click', function() {
     $("#fiveDay").append("<p>" + "Humidity: " + response.list[4].main.humidity + "%"); 
   });
 });
+
+//ORLANDO UV AJAX CALL 
+$("#orlandoBtn").on('click', function() {
+  $.ajax({
+   url: orUV,
+  method: "GET" //this gets the url of phxUV
+}).then(function(response) { //response returns the full object of the url
+    $("#mainpara").append("<p>" + "UV Index: " + "<button type='button' class='btn btn-danger'>" + response.value +"</button>"); 
+  });
+});
+
 //SAN FRANCISCO Button
 $("#sfBtn").on('click', function() {
       $.ajax({
@@ -270,7 +312,6 @@ $("#sfBtn").on('click', function() {
         $("#mainpara").append("Temperature: " + response.main.temp +" °F"); 
         $("#mainpara").append("<p>" + "Humidity: " + response.main.humidity + "%"); 
         $("#mainpara").append("<p>" + "Wind Speed: " + response.wind.speed + "MPH"); 
-        $("#mainpara").append("<p>" + "UV Index: " + "<button type='button' class='btn btn-danger'>" + sfUV +"</button>"); //Currently only shows the actual link - look into changing this
       });
     });
 
@@ -302,6 +343,17 @@ $("#sfBtn").on('click', function() {
     $("#fiveDay").append("<p>" + "Humidity: " + response.list[4].main.humidity + "%"); 
   });
 });  
+
+//SAN FRANCISCO UV AJAX CALL 
+$("#sfBtn").on('click', function() {
+  $.ajax({
+   url: sfUV,
+  method: "GET" //this gets the url of phxUV
+}).then(function(response) { //response returns the full object of the url
+    $("#mainpara").append("<p>" + "UV Index: " + "<button type='button' class='btn btn-danger'>" + response.value +"</button>"); 
+  });
+});
+
 //DENVER Button
 $("#denBtn").on('click', function() {
       $.ajax({
@@ -315,7 +367,6 @@ $("#denBtn").on('click', function() {
         $("#mainpara").append("Temperature: " + response.main.temp +" °F"); 
         $("#mainpara").append("<p>" + "Humidity: " + response.main.humidity + "%"); 
         $("#mainpara").append("<p>" + "Wind Speed: " + response.wind.speed + "MPH"); 
-        $("#mainpara").append("<p>" + "UV Index: " + "<button type='button' class='btn btn-danger'>" + denUV +"</button>"); //Currently only shows the actual link - look into changing this
       });
     });
 //DENVER 5 Day Weather Forecast
@@ -346,6 +397,16 @@ $("#denBtn").on('click', function() {
     $("#fiveDay").append("<p>" + "Humidity: " + response.list[4].main.humidity + "%"); 
   });
 }); 
+//DENVER UV AJAX CALL 
+$("#denBtn").on('click', function() {
+  $.ajax({
+   url: denUV,
+  method: "GET" //this gets the url of phxUV
+}).then(function(response) { //response returns the full object of the url
+    $("#mainpara").append("<p>" + "UV Index: " + "<button type='button' class='btn btn-danger'>" + response.value +"</button>"); 
+  });
+});
+
 //LONDON Button
 $("#ldnBtn").on('click', function() {
       $.ajax({
@@ -359,7 +420,6 @@ $("#ldnBtn").on('click', function() {
         $("#mainpara").append("Temperature: " + response.main.temp +" °F"); 
         $("#mainpara").append("<p>" + "Humidity: " + response.main.humidity + "%"); 
         $("#mainpara").append("<p>" + "Wind Speed: " + response.wind.speed + "MPH"); 
-        $("#mainpara").append("<p>" + "UV Index: " + "<button type='button' class='btn btn-danger'>" + ldnUV +"</button>"); //Currently only shows the actual link - look into changing this
      });
     });
 //LONDON 5 Day Weather Forecast
@@ -390,6 +450,16 @@ $("#ldnBtn").on('click', function() {
     $("#fiveDay").append("<p>" + "Humidity: " + response.list[4].main.humidity + "%"); 
   });
 }); 
+//LONDON UV AJAX CALL 
+$("#ldnBtn").on('click', function() {
+  $.ajax({
+   url: ldnUV,
+  method: "GET" //this gets the url of phxUV
+}).then(function(response) { //response returns the full object of the url
+    $("#mainpara").append("<p>" + "UV Index: " + "<button type='button' class='btn btn-danger'>" + response.value +"</button>"); 
+  });
+});
+
 function emptyCards() {
   $("#mainstate").empty(); //Main Title Emptying
   $("#mainpara").empty(); //Main paragraph Emptying

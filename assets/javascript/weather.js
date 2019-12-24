@@ -1,5 +1,6 @@
 //Declare Variables
 const queryURL = "https://api.openweathermap.org/data/2.5/forecast?id=524901&APPID=9be0a529a7dd200677c71e4ba94edd63";
+const anyUV = "https://api.openweathermap.org/data/2.5/uvi?appid=9be0a529a7dd200677c71e4ba94edd63";
 const phxURL = "https://api.openweathermap.org/data/2.5/weather?q=Phoenix&APPID=9be0a529a7dd200677c71e4ba94edd63&units=imperial";
 const phxUV = "https://api.openweathermap.org/data/2.5/uvi?&appid=9be0a529a7dd200677c71e4ba94edd63&lat=33&lon=112";
 const phxFive = "https://api.openweathermap.org/data/2.5/forecast?zip=85001&appid=9be0a529a7dd200677c71e4ba94edd63&units=imperial";
@@ -31,7 +32,7 @@ const searchVal = $("#searcher").text(); //Value of search button
 //Pushing the value of the text input into the search history array
 searchHistory.push(searchVal); 
 
-
+//PERSISTING SEARCH DATA 
 $("#searchBtn").click(function () { //When Save button is clicked ... 
   $('input[type="text"]').each(function () { //For each input type that is text ...
       const id = $(this).attr('id'); //Grab this input text's id
@@ -48,20 +49,19 @@ $('input[type="text"]').each(function () { //For each input type that is text ..
 });
 
 
- 
-const anyPlace = "https://api.openweathermap.org/data/2.5/forecast?id=524901&APPID=9be0a529a7dd200677c71e4ba94edd63";
-$("#searchBtn").on('click', function() {
+
+//RETURNING DATA FOR ANY CITY UPON CLICKING SEARCH BUTTON/MAGNIFYING GLASS --
+ $("#searchBtn").on('click', function() {
   $.ajax({
-   url: anyPlace,
+   url: queryURL,
   method: "GET"
 }).then(function(response) {
-    emptyCards(); //Essentially a page refresh
     $("#mainstate").append(response.name);
     $("#mainstate").append(date);
     $("#mainstate").append("<img src='http://openweathermap.org/img/w/" + response.weather[0].icon + ".png' alt='Weather Icon'>");
     $("#mainpara").append("Temperature: " + response.main.temp +" °F"); 
     $("#mainpara").append("<p>" + "Humidity: " + response.main.humidity + "%"); 
     $("#mainpara").append("<p>" + "Wind Speed: " + response.wind.speed + "MPH"); 
-    $("#mainpara").append("<p>" + "UV Index: " + "<button type='button' class='btn btn-danger'>" + phxUV +"</button>"); //Currently only shows the actual link - look into changing this
+    $("#mainpara").append("<p>" + "UV Index: " + "<button type='button' class='btn btn-danger'>" + anyUV +"</button>"); //Currently only shows the actual link - look into changing this
   });
 });

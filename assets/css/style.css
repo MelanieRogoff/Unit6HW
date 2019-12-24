@@ -1,43 +1,52 @@
 .jumbotron {
     background-image: linear-gradient(#ff99cc, #ff0080);
-  color: white;
-  text-align: center;
-  height: 170px;
+    color: white;
+    text-align: center;
+    height: 170px;
+    background: cover;
 }
 
-.active-cyan-4 { /*Search title + button*/
+#searcher { /*Search textbox*/
     width: 140px;
     margin-top: -10px;
-    margin-left: 20px;
+    margin-left: 24px;
 }
 
-.cards { /*The 5 Day Forecast Cards */
+#searchForCity { /*Search title*/
+    margin-top: -10px;
+    margin-left: 4px;
+}
+
+.cards { /*5 Day Forecast Cards */
     display: inline-block;
-    width: 180px;
-    margin-left: 70px;
+    width: 160px;
+    margin-left: 38px;
     margin-top: 10px;
-    height: 170px;
     background-color: #cc0066;
+    max-height: 200px;
 }
 
-#searchBtn {
+#searchBtn { /*Magnifying glass*/
     width: 35px;
     height: 35px;
-    display: inline-block;
+    position: fixed;
+    left: 220px;
+    top: 220px;
 }
 .card-header {
     font-size: 18px;
 }
 .fiveDay {
     margin-top: 100px;
-    margin-left: 70px;
+    margin-left: 45px;
 }
 .onestateinfo { /*Main card*/
     width: 480px;
     text-align: center;
     height: 280px;
-    margin-left: 200px;
+    margin-left: 150px;
     display: inline-block;
+    word-wrap: break-word;
 }
 
 .firstFont {
@@ -47,7 +56,7 @@
     display: inline-block;
     width: 120px;
     height: 150px;
-    margin-left: 15px;
+    margin-left: 25px;
     margin-top: 20px;
     background-color: #cc0066;
     border-color: white;
