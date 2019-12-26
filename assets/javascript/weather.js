@@ -1,6 +1,5 @@
 //Declare Variables
 const queryURL = "https://api.openweathermap.org/data/2.5/forecast?id=524901&APPID=9be0a529a7dd200677c71e4ba94edd63";
-const anyUV = "https://api.openweathermap.org/data/2.5/uvi?appid=9be0a529a7dd200677c71e4ba94edd63";
 const phxURL = "https://api.openweathermap.org/data/2.5/weather?q=Phoenix&APPID=9be0a529a7dd200677c71e4ba94edd63&units=imperial";
 const phxUV = "https://api.openweathermap.org/data/2.5/uvi?&appid=9be0a529a7dd200677c71e4ba94edd63&lat=33&lon=112";
 const phxFive = "https://api.openweathermap.org/data/2.5/forecast?zip=85001&appid=9be0a529a7dd200677c71e4ba94edd63&units=imperial";
@@ -38,12 +37,11 @@ $("#searchBtn").click(function () { //When Save button is clicked ...
       const id = $(this).attr('id'); //Grab this input text's id
       const value = $(this).val(); //Get the value of this and save it into the const value
       localStorage.setItem(id, value); //Save the input text's id (id) and the value of this (value) into localStorage
-      newPlace();
     });
 });
 
 $('input[type="text"]').each(function () { //For each input type that is text ...
   const getting = $(this).attr('id'); //This says that for each input of text, grab this input text's id
   const letsGrab = localStorage.getItem(getting); //Put that id in localStorage to grab the value
-  document.getElementById(getting).value = letsGrab; //This says that the empty value in the id is being replaced by what's in letsGrab
+  document.getElementById(getting).value = letsGrab; //This says empty value in id (getting) is replaced by what's in letsGrab
 });
