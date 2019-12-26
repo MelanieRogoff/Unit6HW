@@ -47,21 +47,3 @@ $('input[type="text"]').each(function () { //For each input type that is text ..
   const letsGrab = localStorage.getItem(getting); //Put that id in localStorage to grab the value
   document.getElementById(getting).value = letsGrab; //This says that the empty value in the id is being replaced by what's in letsGrab
 });
-
-
-
-//RETURNING DATA FOR ANY CITY UPON CLICKING SEARCH BUTTON/MAGNIFYING GLASS --
- $("#searchBtn").on('click', function() {
-  $.ajax({
-   url: queryURL,
-  method: "GET"
-}).then(function(response) {
-    $("#mainstate").append(response.name);
-    $("#mainstate").append(date);
-    $("#mainstate").append("<img src='http://openweathermap.org/img/w/" + response.weather[0].icon + ".png' alt='Weather Icon'>");
-    $("#mainpara").append("Temperature: " + response.main.temp +" °F"); 
-    $("#mainpara").append("<p>" + "Humidity: " + response.main.humidity + "%"); 
-    $("#mainpara").append("<p>" + "Wind Speed: " + response.wind.speed + "MPH"); 
-    $("#mainpara").append("<p>" + "UV Index: " + "<button type='button' class='btn btn-danger'>" + anyUV +"</button>"); //Currently only shows the actual link - look into changing this
-  });
-});

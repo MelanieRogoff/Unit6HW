@@ -479,3 +479,10 @@ function emptyCards() {
   $("#fivePic").empty(); //5-Day Forecast Card Emptying
   $("#fiveTemp").empty(); //5-Day Forecast Card Emptying
 }
+
+
+
+$("#searchBtn").on("click", function() {
+  console.log($(this).val());
+ });
+

@@ -2,36 +2,35 @@
     background-image: linear-gradient(#ff99cc, #ff0080);
     color: white;
     text-align: center;
-    height: 170px;
+    height: 140px;
     background: cover;
 }
 
 #searcher { /*Search textbox*/
     width: 140px;
-    margin-top: -10px;
-    margin-left: 24px;
+    margin-left: -114px;
+    margin-top: 22px;
 }
 
 #searchForCity { /*Search title*/
-    margin-top: -10px;
+    margin-top: -70px;
     margin-left: 4px;
 }
 
 .cards { /*5 Day Forecast Cards */
     display: inline-block;
-    width: 160px;
-    margin-left: 38px;
+    width: 185px;
+    height: 300px;
+    position: relative;
+    left: 50px;
     margin-top: 10px;
     background-color: #cc0066;
-    max-height: 200px;
 }
 
 #searchBtn { /*Magnifying glass*/
     width: 35px;
     height: 35px;
-    position: fixed;
-    left: 220px;
-    top: 220px;
+    position: relative;
 }
 .card-header {
     font-size: 18px;
@@ -44,9 +43,9 @@
     width: 480px;
     text-align: center;
     height: 280px;
-    margin-left: 150px;
+    position: relative;
+    left: 160px;
     display: inline-block;
-    word-wrap: break-word;
 }
 
 .firstFont {
@@ -60,4 +59,65 @@
     margin-top: 20px;
     background-color: #cc0066;
     border-color: white;
+}
+
+@media only screen and (width: 768px) {
+
+.jumbotron {
+    background-image: linear-gradient(#ff99cc, #ff0080);
+    color: white;
+    text-align: center;
+    height: 220px;
+    width: 880px;
+}
+
+#searchForCity { /*Search title*/
+    margin-top: -70px;
+    margin-left: 4px;
+}
+
+#searchBtn { /*Magnifying glass*/
+    width: 35px;
+    height: 35px;
+    position: relative;
+}
+.card-header {
+    font-size: 18px;
+}
+.cards { /*5 Day Forecast Cards */
+    display: inline-block;
+    width: 140px;
+    height: 300px;
+    position: relative;
+    bottom: 70px;
+    left: 80px;
+    background-color: #cc0066;
+}
+.fiveDay {
+    position: relative;
+    top: -80px;
+    left: 40px;
+}
+.onestateinfo { /*Main card*/
+    width: 480px;
+    text-align: center;
+    position: relative;
+    top: 20px;
+    left: 60px;
+    height: 280px;
+    display: inline-block;
+}
+
+.firstFont {
+    font-size: 12px;
+}
+.statebuttons {
+    display: inline-block;
+    width: 120px;
+    height: 150px;
+    margin-left: 25px;
+    margin-top: 20px;
+    background-color: #cc0066;
+    border-color: white;
+}
 }
