@@ -63,7 +63,7 @@
 }
 
 
-@media only screen and (max-height: 823px) {
+@media only screen and (max-width: 411px) {
     /*Mobiles ONLY */
     .jumbotron {
         background-image: linear-gradient(#ff99cc, #ff0080);
@@ -87,14 +87,14 @@
         font-size: 18px;
     }
     .cards { /*5 Day Forecast Cards */
-        display: inline-block;
-        width: 230px;
-        height: 230px;
-        position: relative;
-        bottom: 90px;
-        left: 320px;
-        background-color: #cc0066;
-    }
+    display: inline-block;
+    width: 185px;
+    height: 280px;
+    position: relative;
+    margin-left: 285px;
+    top: -100px;
+    background-color: #cc0066;
+  }
     .fiveDay {
         position: relative;
         left: 360px;
@@ -125,14 +125,14 @@
     }
 
 
-@media only screen and (width: 768px) {
+@media only screen and (min-width: 768px) {
 /*iPad ONLY */
 .jumbotron {
     background-image: linear-gradient(#ff99cc, #ff0080);
     color: white;
     text-align: center;
     height: 220px;
-    width: 880px;
+    width: 1380px;
 }
 
 #searchForCity { /*Search title*/
@@ -147,6 +147,7 @@
 }
 .card-header {
     font-size: 18px;
+    text-align: center;
 }
 .cards { /*5 Day Forecast Cards */
     display: inline-block;
@@ -154,20 +155,21 @@
     height: 300px;
     position: relative;
     top: 50px;
-    left: 80px;
+    left: 280px;
     background-color: #cc0066;
+    text-align: center;
 }
 .fiveDay {
     position: relative;
     top: 20px;
-    left: 90px;
+    left: 280px;
 }
 .onestateinfo { /*Main card*/
     width: 480px;
     text-align: center;
     position: relative;
     top: -20px;
-    left: 110px;
+    left: 250px;
     height: 280px;
     display: inline-block;
 }
@@ -185,3 +187,62 @@
     border-color: white;
 }
 }
+
+
+@media only screen and (width: 414px) {
+    /*iPhone 6/7 ONLY */
+    .jumbotron {
+        background-image: linear-gradient(#ff99cc, #ff0080);
+        color: white;
+        text-align: center;
+        height: 220px;
+        width: 1280px;
+    }
+    #searchForCity { /*Search title*/
+        margin-top: -70px;
+        margin-left: 4px;
+    }
+    #searchBtn { /*Magnifying glass*/
+        width: 35px;
+        height: 35px;
+        position: relative;
+    }
+    .card-header {
+        font-size: 18px;
+        text-align: center;
+    }
+    .cards { /*5 Day Forecast Cards */
+        display: inline-block;
+        width: 140px;
+        height: 300px;
+        position: relative;
+        margin-left: 540px;
+        background-color: #cc0066;
+        text-align: center;
+    }
+    .fiveDay {
+        position: relative;
+        left: 590px;
+    }
+    .onestateinfo { /*Main card*/
+        width: 480px;
+        text-align: center;
+        position: relative;
+        top: -140px;
+        left: 410px;
+        height: 280px;
+        display: inline-block;
+    }
+    .firstFont {
+        font-size: 12px;
+    }
+    .statebuttons {
+        display: inline-block;
+        width: 120px;
+        height: 150px;
+        margin-left: 25px;
+        margin-top: 20px;
+        background-color: #cc0066;
+        border-color: white;
+    }
+    }

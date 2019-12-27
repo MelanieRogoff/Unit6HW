@@ -1,6 +1,3 @@
-
-
-
 //INPUT AJAX CALL
 $("#searchBtn").on('click', function(event) {
 event.preventDefault();
@@ -22,20 +19,18 @@ const newQuery = "https://api.openweathermap.org/data/2.5/weather?q=" + inputs +
         $("#mainpara").append("<p>" + "Humidity: " + response.main.humidity + "%"); 
         $("#mainpara").append("<p>" + "Wind Speed: " + response.wind.speed + "MPH"); 
       }
-  //ENTER 5 DAY FORECASTS HERE
+  //5 DAY FORECASTS AJAX CALL BELOW
     const input2 = $("#searcher").val();
     //URL Construction 
     const query2 = "https://api.openweathermap.org/data/2.5/forecast?q=" + input2 + "&APPID=9be0a529a7dd200677c71e4ba94edd63&units=imperial";
     //Call the AJAX
-    console.log(query2);
      $.ajax({
          url: query2,
          method: "GET"
     }).then(function(response) {
-        //NEED TO SOMEHOW CODE A REFRESH BEFORE THIS
         emptyCards();
-        displayCards();
-        moreDisplays();
+        displayCards(); //Displays main card
+        moreDisplays(); //Displays 5 Day Forecast 
         function moreDisplays() {
             $("#oneDay").append(tomorrow());
             $("#oneDay").append("<p>" + "<img src='http://openweathermap.org/img/w/" + response.list[0].weather[0].icon + ".png' alt='Weather Icon'>"  + "</p>");
@@ -57,10 +52,10 @@ const newQuery = "https://api.openweathermap.org/data/2.5/weather?q=" + inputs +
             $("#fiveDay").append("<p>" + "<img src='http://openweathermap.org/img/w/" + response.list[4].weather[0].icon + ".png' alt='Weather Icon'>" + "</p>");
             $("#fiveDay").append("Temp: " + response.list[4].main.temp +" °F");
             $("#fiveDay").append("<p>" + "Humidity: " + response.list[4].main.humidity + "%"); 
- }
- });
- }); 
-  });
 
+        //UV INDEX GRABBER BELOW
+        //CODE THE LOCALSTORAGE LOADING ALL OF THIS BELOW
 
-  
+    }});
+});
+})       
