@@ -19,6 +19,7 @@ const newQuery = "https://api.openweathermap.org/data/2.5/weather?q=" + inputs +
         $("#mainpara").append("<p>" + "Humidity: " + response.main.humidity + "%"); 
         $("#mainpara").append("<p>" + "Wind Speed: " + response.wind.speed + "MPH"); 
       }
+     
   //5 DAY FORECASTS AJAX CALL BELOW
     const input2 = $("#searcher").val();
     //URL Construction 
@@ -52,10 +53,18 @@ const newQuery = "https://api.openweathermap.org/data/2.5/weather?q=" + inputs +
             $("#fiveDay").append("<p>" + "<img src='http://openweathermap.org/img/w/" + response.list[4].weather[0].icon + ".png' alt='Weather Icon'>" + "</p>");
             $("#fiveDay").append("Temp: " + response.list[4].main.temp +" °F");
             $("#fiveDay").append("<p>" + "Humidity: " + response.list[4].main.humidity + "%"); 
-
-        //UV INDEX GRABBER BELOW
+        }})
+       //UV INDEX GRABBER BELOW
+            //URL Construction 
+        const anyUV = "https://api.openweathermap.org/data/2.5/uvi?&appid=9be0a529a7dd200677c71e4ba94edd63&lat="+ response.coord.lat + "&lon=" + response.coord.lon;
+         //AJAX Call
+            $.ajax({
+            url: anyUV,
+            method: "GET"
+        }).then(function(response) {
+            uvDisplays();
+            function uvDisplays() {
+            $("#mainpara").append("<p>" + "UV Index: " + "<button type='button' class='btn btn-danger'>" + response.value +"</button>"); 
+            }})
         //CODE THE LOCALSTORAGE LOADING ALL OF THIS BELOW
-
-    }});
-});
-})       
+        })});
