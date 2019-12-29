@@ -62,6 +62,10 @@
     border-color: white;
 }
 
+#audio {
+    margin-top: -220px;
+    margin-left: 280px;
+}
 
 @media only screen and (max-width: 411px) {
     /*Mobiles ONLY */
@@ -109,7 +113,6 @@
         left: 230px;
         display: inline-block;
     }
-    
     .firstFont {
         font-size: 12px;
     }
@@ -124,71 +127,73 @@
     }
     }
 
-
 @media only screen and (min-width: 768px) {
-/*iPad ONLY */
-.jumbotron {
-    background-image: linear-gradient(#ff99cc, #ff0080);
-    color: white;
-    text-align: center;
-    height: 220px;
-    width: 1380px;
-}
+    /*iPad ONLY */
+    .jumbotron {
+        background-image: linear-gradient(#ff99cc, #ff0080);
+        color: white;
+        text-align: center;
+        height: 220px;
+        width: 1380px;
+    }
 
-#searchForCity { /*Search title*/
-    margin-top: -70px;
-    margin-left: 4px;
-}
+    #searchForCity { /*Search title*/
+        margin-top: -70px;
+        margin-left: 4px;
+    }
 
-#searchBtn { /*Magnifying glass*/
-    width: 35px;
-    height: 35px;
-    position: relative;
-}
-.card-header {
-    font-size: 18px;
-    text-align: center;
-}
-.cards { /*5 Day Forecast Cards */
-    display: inline-block;
-    width: 140px;
-    height: 300px;
-    position: relative;
-    top: 50px;
-    left: 280px;
-    background-color: #cc0066;
-    text-align: center;
-}
-.fiveDay {
-    position: relative;
-    top: 20px;
-    left: 280px;
-}
-.onestateinfo { /*Main card*/
-    width: 480px;
-    text-align: center;
-    position: relative;
-    top: -20px;
-    left: 250px;
-    height: 280px;
-    display: inline-block;
-}
+    #searchBtn { /*Magnifying glass*/
+        width: 35px;
+        height: 35px;
+        position: relative;
+    }
+    .card-header {
+        font-size: 18px;
+        text-align: center;
+    }
+    .cards { /*5 Day Forecast Cards */
+        display: inline-block;
+        width: 140px;
+        height: 300px;
+        position: relative;
+        top: 50px;
+        left: 280px;
+        background-color: #cc0066;
+        text-align: center;
+    }
+    .fiveDay {
+        position: relative;
+        top: 20px;
+        left: 280px;
+    }
+    .onestateinfo { /*Main card*/
+        width: 480px;
+        text-align: center;
+        position: relative;
+        top: -20px;
+        left: 250px;
+        height: 280px;
+        display: inline-block;
+    }
 
-.firstFont {
-    font-size: 12px;
-}
-.statebuttons {
-    display: inline-block;
-    width: 120px;
-    height: 150px;
-    margin-left: 25px;
-    margin-top: 20px;
-    background-color: #cc0066;
-    border-color: white;
-}
-}
-
-
+    .firstFont {
+        font-size: 12px;
+    }
+    .statebuttons {
+        display: inline-block;
+        width: 120px;
+        height: 150px;
+        margin-left: 25px;
+        margin-top: 20px;
+        background-color: #cc0066;
+        border-color: white;
+    }
+    #audio {
+        margin-top: 120px;
+        margin-left: 450px;
+    }
+}   
+ 
 @media only screen and (width: 414px) {
     /*iPhone 6/7 ONLY */
     .jumbotron {
@@ -245,4 +250,10 @@
         background-color: #cc0066;
         border-color: white;
     }
+    #audio {
+        margin-top: -220px;
+        margin-left: 500px;
     }
+    
+    }
+
