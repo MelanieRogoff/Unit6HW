@@ -66,5 +66,26 @@ const newQuery = "https://api.openweathermap.org/data/2.5/weather?q=" + inputs +
             function uvDisplays() {
             $("#mainpara").append("<p>" + "UV Index: " + "<button type='button' class='btn btn-danger'>" + response.value +"</button>"); 
             }})
+
         //CODE THE LOCALSTORAGE LOADING ALL OF THIS BELOW
-        })});
+
+        $("#searchBtn").click(function () { //When Save button is clicked ... 
+            //Grab the info displayed in mainpara and mainstate
+                localStorage.setItem('mainstate', $("#mainstate").text()); //Save the input text's id (id) and the value of this (value) into localStorage
+                localStorage.setItem('mainpara', $("#mainpara").text()); //Save the input text's id (id) and the value of this (value) into localStorage
+                localStorage.setItem('fivecards', $("#oneDay").text()); //Save the input text's id (id) and the value of this (value) into localStorage
+                localStorage.setItem('fivecards2', $("#twoDay").text()); //Save the input text's id (id) and the value of this (value) into localStorage
+                localStorage.setItem('fivecards3', $("#threeDay").text()); //Save the input text's id (id) and the value of this (value) into localStorage
+                localStorage.setItem('fivecards4', $("#fourDay").text()); //Save the input text's id (id) and the value of this (value) into localStorage
+                localStorage.setItem('fivecards5', $("#fiveDay").text()); //Save the input text's id (id) and the value of this (value) into localStorage
+        });
+          });
+                const mainFirst = localStorage.getItem('mainstate');
+                const paraFirst= localStorage.getItem('mainpara');
+                const firstFive= localStorage.getItem('fivecards');
+                const secondFive= localStorage.getItem('fivecards2');
+                const thirdFive= localStorage.getItem('fivecards3');
+                const fourthFive= localStorage.getItem('fivecards4');
+                const fifthFive= localStorage.getItem('fivecards5');
+          });
+        
