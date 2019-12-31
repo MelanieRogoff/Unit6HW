@@ -1,11 +1,19 @@
 $(document).ready(function() { //On page load...
+    navigator.geolocation.getCurrentPosition(function(position) {
+        alert("Current location: " + Math.round(position.coords.latitude * 100)/100 + ", " + Math.round(position.coords.longitude * 100)/100 + "." + " Please enter a city in the search box and click on the magnifying glass for more weather information.");
+      });
     const gets = localStorage.getItem('inputs'); //Get 'inputs' FIRST so it displays on page load
     $("#searchBtn").click(function () { //When Save button is clicked ... 
         event.preventDefault();
+        const citySearched = $("#searcher").val(); //Get the value of the search input
+        const cityArray = []; //Make empty array
+        cityArray.push(citySearched); //Push value of textbox into cityArray
+        localStorage.setItem('newSearch', cityArray); //Save that info into localStorage
+        
         if ($("#searcher").val() == '') { //This checks to see if #searcher val is empty string (no input)
             return alert("Please input a city in the Search bar, and click on the magnifying glass.");
          }
-            localStorage.setItem('mainstate', $("#mainstate").text()); //Save input text's id (id) & value of this (value) into localStorage
+            localStorage.setItem('mainstate', $("#mainstate").text()); //Save input text into localStorage
             localStorage.setItem('mainpara', $("#mainpara").text()); //Same as above
             localStorage.setItem('fivecards', $("#oneDay").text()); //Same as above
             localStorage.setItem('fivecards2', $("#twoDay").text()); //Same as above
@@ -13,6 +21,7 @@ $(document).ready(function() { //On page load...
             localStorage.setItem('fivecards4', $("#fourDay").text()); //Same as above
             localStorage.setItem('fivecards5', $("#fiveDay").text()); //Same as above
             firstCall(); //Call the firstCall function
+            buttonMaker();
         }); //Search button function ends here
 
     firstCall(gets); //Calling this in document ready so it'll work upon page load
@@ -88,4 +97,20 @@ function thirdCall(response) { //Have to have specific parameter of response for
             })
 }
 
+//Create new localStorage item that saves each city searched into an array, and make button creator function
+
+buttonMaker();
+    function buttonMaker() {
+        const cityArray = [];
+        const citySearched = $("#searcher").val(); 
+        cityArray.push(citySearched);
+      for (let i = 0; i < cityArray.length; i++) {
+        localStorage.setItem('newSearch', citySearched); //Save most recent city searched to localStorage
+        const cityBtn = $("<button>");
+        cityBtn.addClass("btn btn-secondary");
+        cityBtn.text(cityArray[i]);
+        $("#btns").append(cityBtn);
+
+      }
+    }
    
