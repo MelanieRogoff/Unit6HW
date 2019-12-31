@@ -5,11 +5,12 @@ $(document).ready(function() { //On page load...
     const gets = localStorage.getItem('inputs'); //Get 'inputs' FIRST so it displays on page load
     $("#searchBtn").click(function () { //When Save button is clicked ... 
         event.preventDefault();
-        const citySearched = $("#searcher").val(); //Get the value of the search input
+        const citySearched = $("#searcher").val()//Get the value of the search input
+       const capitals = citySearched.charAt(0).toUpperCase() + citySearched.slice(1);
         const cityArray = []; //Make empty array
-        cityArray.push(citySearched); //Push value of textbox into cityArray
+        cityArray.push(capitals); //Push value of textbox into cityArray
         localStorage.setItem('newSearch', cityArray); //Save that info into localStorage
-        
+
         if ($("#searcher").val() == '') { //This checks to see if #searcher val is empty string (no input)
             return alert("Please input a city in the Search bar, and click on the magnifying glass.");
          }
@@ -41,7 +42,7 @@ function firstCall(city) {
             emptyCards();
             $("#mainstate").append(response.name); //Not doing this as a function because it's different every time
             $("#mainstate").append(date);
-            $("#mainstate").append("<img src='http://openweathermap.org/img/w/" + response.weather[0].icon + ".png' alt='Weather Icon'>");
+            $("#mainstate").append("<img src='https://openweathermap.org/img/w/" + response.weather[0].icon + ".png' alt='Weather Icon'>");
             $("#mainpara").append("Temperature: " + response.main.temp +" °F"); 
             $("#mainpara").append("<p>" + "Humidity: " + response.main.humidity + "%"); 
             $("#mainpara").append("<p>" + "Wind Speed: " + response.wind.speed + "MPH"); 
@@ -103,7 +104,8 @@ buttonMaker();
     function buttonMaker() {
         const cityArray = [];
         const citySearched = $("#searcher").val(); 
-        cityArray.push(citySearched);
+        const capitals = citySearched.charAt(0).toUpperCase() + citySearched.substr(1);
+        cityArray.push(capitals);
       for (let i = 0; i < cityArray.length; i++) {
         localStorage.setItem('newSearch', citySearched); //Save most recent city searched to localStorage
         const cityBtn = $("<button>");
