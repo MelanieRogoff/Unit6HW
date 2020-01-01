@@ -26,6 +26,11 @@ $(document).ready(function() { //On page load...
         }); //Search button function ends here
 
     firstCall(gets); //Calling this in document ready so it'll work upon page load
+    if ($(document).ajaxError(function() {
+        emptyCards();
+        $("#mainstate").append("Error: " + $("#searcher").val() + " doesn't exist. Please search for a valid city.");
+        $("#mainstate").append("<p>" + "<img id='tryagain' src='assets/images/try.jpg'>" + "</p>");
+    }));
 })
   
 function firstCall(city) {
@@ -37,7 +42,7 @@ function firstCall(city) {
     const newQuery = "https://api.openweathermap.org/data/2.5/weather?q=" + inputs + "&APPID=9be0a529a7dd200677c71e4ba94edd63&units=imperial";
         $.ajax({
             url: newQuery,
-            method: "GET" 
+            method: "GET",
       }).then(function(response) { //response returns the full object of the url
             emptyCards();
             $("#mainstate").append(response.name); //Not doing this as a function because it's different every time
@@ -104,7 +109,7 @@ buttonMaker();
     function buttonMaker() {
         const cityArray = [];
         const citySearched = $("#searcher").val(); 
-        const capitals = citySearched.charAt(0).toUpperCase() + citySearched.substr(1);
+        const capitals = citySearched.charAt(0).toUpperCase() + citySearched.slice(1);
         cityArray.push(capitals);
       for (let i = 0; i < cityArray.length; i++) {
         localStorage.setItem('newSearch', citySearched); //Save most recent city searched to localStorage
@@ -115,4 +120,3 @@ buttonMaker();
 
       }
     }
-   

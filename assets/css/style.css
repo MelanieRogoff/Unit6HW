@@ -7,7 +7,11 @@ body {
     text-align: center;
     height: 140px;
 }
-
+#tryagain {
+    margin-top: 20px;
+    width: 150px;
+    height: 150px;
+}
 #searcher { /*Search textbox*/
     width: 140px;
     margin-left: -114px;
@@ -132,6 +136,7 @@ body {
         height: 220px;
         width: 1280px;
     }
+
     #searchForCity { /*Search title*/
         margin-top: -70px;
         margin-left: 4px;
@@ -159,12 +164,12 @@ body {
         left: 590px;
     }
     .onestateinfo { /*Main card*/
-        width: 380px;
+        width: 360px;
         text-align: center;
         position: relative;
         top: -140px;
         left: 450px;
-        height: 240px;
+        height: 280px;
         display: inline-block;
     }
     .firstFont {
