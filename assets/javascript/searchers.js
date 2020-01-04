@@ -34,9 +34,9 @@ function firstCall(city) {
         if (!cityArray.includes(inputs)) { //If the city searched is NOT in city array
             cityArray.push(capitals); //Push value of textbox into cityArray
             localStorage.setItem('newSearch', JSON.stringify(cityArray)); //Save that info into localStorage
-            buttonMaker(cityArray);
+            buttonMaker(cityArray); //Make the buttons with the cityArray info
         }
-        $("#mainstate").append(response.name); //Not doing this as a function because it's different every time
+            $("#mainstate").append(response.name); //Not doing this as a function because it's different every time
             $("#mainstate").append(date);
             $("#mainstate").append("<img src='https://openweathermap.org/img/w/" + response.weather[0].icon + ".png' alt='Weather Icon'>");
             $("#mainpara").append("Temperature: " + response.main.temp +" °F"); 
@@ -45,10 +45,10 @@ function firstCall(city) {
             twoCall(response); //Need to pass response parameter W/IN twoCall here to ensure it works, AND call here because it's nested
             thirdCall(response); //Need to pass response parameter W/IN thirdCall here to ensure it works, AND call here because it's nested
  })
- .catch(function (error) { //If there's an error w/promise, THIS catches the error and does this instead of promise 
+ .catch(function (error) { //If there's an error w/promise, THIS catches error & does the below code instead of promise 
       //CATCH CAN ONLY BE ON A PROMISE OR A TRY CATCH BLOCK  
-            $("#mainstate").append("Error: " + inputs + " doesn't exist. Please search for a valid city.");
-         $("#mainstate").append("<p>" + "<img id='tryagain' src='assets/images/try.jpg'>" + "</p>");
+        $("#mainstate").append("Error: " + inputs + " doesn't exist. Please search for a valid city.");
+        $("#mainstate").append("<p>" + "<img id='tryagain' src='assets/images/try.jpg'>" + "</p>");
 })}
 
 function twoCall(city) { //city in parameter because we need specifics
