@@ -4,17 +4,7 @@ $(document).ready(function() { //On page load...
       });
     $("#searchBtn").click(function () { //When Save button is clicked ... 
         event.preventDefault();
-        const citySearched = $("#searcher").val()//Get value of search input
-        const capitals = citySearched.charAt(0).toUpperCase() + citySearched.slice(1);
-        const cityArray = JSON.parse(localStorage.getItem('newSearch')) || [];
-        cityArray.push(capitals); //Push value of textbox into cityArray
-        localStorage.setItem('newSearch', JSON.stringify(cityArray)); //Save that info into localStorage
-        if ($(document).ajaxError(function() {
-            $("#mainstate").append("Error: " + $("#searcher").val() + " doesn't exist. Please search for a valid city.");
-            $("#mainstate").append("<p>" + "<img id='tryagain' src='assets/images/try.jpg'>" + "</p>");
-        }));
-        buttonMaker(cityArray);
-        if ($("#searcher").val() == '') { //Checks if #searcher val is empty string (no input)
+            if ($("#searcher").val() == '') { //Checks if #searcher val is empty string (no input)
             return alert("Please input a city in the Search bar, and click on the magnifying glass.");
          }
             localStorage.setItem('mainstate', $("#mainstate").text()); //Save input text into localStorage
@@ -38,7 +28,15 @@ function firstCall(city) {
         url: newQuery,
         method: "GET",
     }).then(function(response) { //response returns the full object of the url
-            $("#mainstate").append(response.name); //Not doing this as a function because it's different every time
+        const capitals = inputs.charAt(0).toUpperCase() + inputs.slice(1);
+        const cityArray = JSON.parse(localStorage.getItem('newSearch')) || [];
+
+        if (!cityArray.includes(inputs)) { //If the city searched is NOT in city array
+            cityArray.push(capitals); //Push value of textbox into cityArray
+            localStorage.setItem('newSearch', JSON.stringify(cityArray)); //Save that info into localStorage
+            buttonMaker(cityArray);
+        }
+        $("#mainstate").append(response.name); //Not doing this as a function because it's different every time
             $("#mainstate").append(date);
             $("#mainstate").append("<img src='https://openweathermap.org/img/w/" + response.weather[0].icon + ".png' alt='Weather Icon'>");
             $("#mainpara").append("Temperature: " + response.main.temp +" °F"); 
@@ -46,7 +44,13 @@ function firstCall(city) {
             $("#mainpara").append("<p>" + "Wind Speed: " + response.wind.speed + "MPH"); 
             twoCall(response); //Need to pass response parameter W/IN twoCall here to ensure it works, AND call here because it's nested
             thirdCall(response); //Need to pass response parameter W/IN thirdCall here to ensure it works, AND call here because it's nested
-    })}
+ })
+ .catch(function (error) { //If there's an error w/promise, THIS catches the error and does this instead of promise 
+      //CATCH CAN ONLY BE ON A PROMISE OR A TRY CATCH BLOCK  
+            $("#mainstate").append("Error: " + inputs + " doesn't exist. Please search for a valid city.");
+         $("#mainstate").append("<p>" + "<img id='tryagain' src='assets/images/try.jpg'>" + "</p>");
+})}
+
 function twoCall(city) { //city in parameter because we need specifics
     //5 DAY FORECASTS AJAX CALL BELOW
     const query2 = "https://api.openweathermap.org/data/2.5/forecast?q=" + city.name + "&APPID=9be0a529a7dd200677c71e4ba94edd63&units=imperial";
@@ -95,9 +99,7 @@ function thirdCall(response) { //Need response parameter for when we call it wit
 //Create new localStorage item that saves each city searched into an array, and make button creator function
     function buttonMaker(cityArray) {
     $("#btns").empty(); //Have OUT of for loop so that it clears out ONCE before the loop runs
-    if ($("#btns").text() == cityArray) {
-        buttonMaker().stop();
-    }
+   
     for (let i = 0; i < cityArray.length; i++) {
         const cityBtn = $("<button>");
         cityBtn.addClass("btn btn-secondary");
