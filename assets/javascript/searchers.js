@@ -7,9 +7,10 @@ $(document).ready(function() {
             if ($("#searcher").val() == '') { 
             return alert("Please input a city in the Search bar, and click on the magnifying glass.");
          }
-            firstCall(); 
+         firstCall(); 
         }); //Search button function ends here
         const cityArray = JSON.parse(localStorage.getItem('newSearch')) || [];
+        firstCall(cityArray[cityArray.length - 1]); //Call this outside click function so that it grabs last city searched on refresh and displays
         buttonMaker(cityArray);
 })
 function firstCall(city) {
