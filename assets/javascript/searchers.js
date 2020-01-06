@@ -4,45 +4,46 @@ $(document).ready(function() {
       });
     $("#searchBtn").click(function () { //When Save button is clicked ... 
         event.preventDefault();
-            if ($("#searcher").val() == '') { 
+            if ($("#searcher").val() == '') {  //Checking for empty string, if empty return alert
             return alert("Please input a city in the Search bar, and click on the magnifying glass.");
          }
          firstCall(); 
         }); //Search button function ends here
-        const cityArray = JSON.parse(localStorage.getItem('newSearch')) || [];
+        const cityArray = JSON.parse(localStorage.getItem('newSearch')) || []; //This parses newSearch and says that if there's nothing there, make it an empty array
         firstCall(cityArray[cityArray.length - 1]); //Call this outside click function so that it grabs last city searched on refresh and displays
         buttonMaker(cityArray);
 })
-function firstCall(city) {
+function firstCall(city) { //Have city in the parameter because we need specifics
     let inputs = $("#searcher").val(); 
     if (city) { 
         inputs = city; 
-    } 
-    emptyCards();
+    } //Doing this right here so that we can save the most recent city searched
+    emptyCards(); 
     const newQuery = "https://api.openweathermap.org/data/2.5/weather?q=" + inputs + "&APPID=9be0a529a7dd200677c71e4ba94edd63&units=imperial";
     $.ajax({
         url: newQuery,
         method: "GET",
-    }).then(function(response) { 
+    }).then(function(response) { //response returns the full object of the url
         const capitals = inputs.charAt(0).toUpperCase() + inputs.slice(1);
         const cityArray = JSON.parse(localStorage.getItem('newSearch')) || [];
-        if (!cityArray.includes(capitals)) { 
+        if (!cityArray.includes(capitals)) {  //If statement ensures cities are only saved once
             cityArray.push(capitals); 
             localStorage.setItem('newSearch', JSON.stringify(cityArray)); 
-            savers();
+            savers(); 
             buttonMaker(cityArray); 
         }
-            $("#mainstate").append(response.name); 
+            $("#mainstate").append(response.name); //Not doing this as a function because it's different every time
             $("#mainstate").append(date);
             $("#mainstate").append("<img src='https://openweathermap.org/img/w/" + response.weather[0].icon + ".png' alt='Weather Icon'>");
             $("#mainpara").append("Temperature: " + response.main.temp +" °F"); 
             $("#mainpara").append("<p>" + "Humidity: " + response.main.humidity + "%"); 
             $("#mainpara").append("<p>" + "Wind Speed: " + response.wind.speed + "MPH"); 
-            twoCall(response); 
-            thirdCall(response); 
+            twoCall(response); //Need to pass the response parameter W/IN twoCall here to ensure it works, AND call here because it's nested
+            thirdCall(response); //Need to pass the response parameter W/IN thirdCall here to ensure it works, AND call here because it's nested
  })
  
- .catch(function (error) { 
+ .catch(function (error) { //If there's an error w/promise, THIS catches error & does the below code instead of promise 
+       //CATCH CAN ONLY BE ON A PROMISE OR A TRY CATCH BLOCK  
         $("#mainstate").append("Error: " + inputs + " doesn't exist. Please search for a valid city.");
         $("#mainstate").append("<p>" + "<img id='tryagain' src='assets/images/try.jpg'>" + "</p>");
 })
@@ -55,7 +56,7 @@ function savers() {
     localStorage.setItem('fivecards4', $("#fourDay").text()); 
     localStorage.setItem('fivecards5', $("#fiveDay").text()); 
     }}
-function twoCall(city) { 
+function twoCall(city) {  //Have city in the parameter because we need specifics
     //5 DAY FORECASTS AJAX CALL BELOW
     const query2 = "https://api.openweathermap.org/data/2.5/forecast?q=" + city.name + "&APPID=9be0a529a7dd200677c71e4ba94edd63&units=imperial";
         $.ajax({
@@ -63,7 +64,7 @@ function twoCall(city) {
             method: "GET"
         }).then(function(response) {
             moreDisplays(); //Displays 5 Day Forecast
-                function moreDisplays() { 
+                function moreDisplays() { //Don't put this function outside, it's only being called here
                     $("#oneDay").append(tomorrow());
                     $("#oneDay").append("<p>" + "<img src='http://openweathermap.org/img/w/" + response.list[0].weather[0].icon + ".png' alt='Weather Icon'>"  + "</p>");
                     $("#oneDay").append("Temp: " + response.list[0].main.temp +" °F");
@@ -87,7 +88,7 @@ function twoCall(city) {
                 }
         })
 }   
-function thirdCall(response) { 
+function thirdCall(response) { //Have to have specific parameter of response for when we call it with response later 
     //UV INDEX GRABBER BELOW
     const anyUV = "https://api.openweathermap.org/data/2.5/uvi?&appid=9be0a529a7dd200677c71e4ba94edd63&lat="+ response.coord.lat + "&lon=" + response.coord.lon;
         $.ajax({
@@ -100,6 +101,8 @@ function thirdCall(response) {
                 }
             })
 }
+//Create new localStorage item that saves each city searched into an array, and make button creator function
+
     function buttonMaker(cityArray) {
     $("#btns").empty(); 
     for (let i = 0; i < cityArray.length; i++) {
