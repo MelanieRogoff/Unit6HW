@@ -10,9 +10,10 @@ $(document).ready(function() {
          firstCall(); 
         }); //Search button function ends here
         const cityArray = JSON.parse(localStorage.getItem('newSearch')) || []; //This parses newSearch and says that if there's nothing there, make it an empty array
+        if (cityArray.length > 0) { //This if statement ensures that an error message doesn't display upon load
         firstCall(cityArray[cityArray.length - 1]); //Call this outside click function so that it grabs last city searched on refresh and displays
         buttonMaker(cityArray);
-})
+}})
 function firstCall(city) { //Have city in the parameter because we need specifics
     let inputs = $("#searcher").val(); 
     if (city) { 
@@ -114,5 +115,5 @@ function thirdCall(response) { //Have to have specific parameter of response for
 }
 $('#btns').on('click', 'button', function(e){
     e.preventDefault();
-    firstCall($(this).text())
+    return firstCall($(this).text())
 })
