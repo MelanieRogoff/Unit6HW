@@ -32,4 +32,4 @@ Website: https://melanierogoff.github.io/Unit6HW/
 
 Screenshot (iPad Preview):
 
-![iPad](assets/ipad.png)
+![iPad](assets/screenshots/ipad.png)
