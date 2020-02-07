@@ -36,8 +36,8 @@ function firstCall(city) { //Have city in the parameter because we need specific
             $("#mainstate").append(response.name); //Not doing this as a function because it's different every time
             $("#mainstate").append(date);
             $("#mainstate").append("<img src='https://openweathermap.org/img/w/" + response.weather[0].icon + ".png' alt='Weather Icon'>");
-            $("#mainpara").append("Temperature: " + response.main.temp +" °F"); 
-            $("#mainpara").append("<p>" + "Humidity: " + response.main.humidity + "%"); 
+            $("#mainpara").append("Temperature: " + response.main.temp +"°F"); 
+            $("#mainpara").append("<br><br><p>" + "Humidity:" + response.main.humidity + "%"); 
             $("#mainpara").append("<p>" + "Wind Speed: " + response.wind.speed + "MPH"); 
             twoCall(response); //Need to pass the response parameter W/IN twoCall here to ensure it works, AND call here because it's nested
             thirdCall(response); //Need to pass the response parameter W/IN thirdCall here to ensure it works, AND call here because it's nested

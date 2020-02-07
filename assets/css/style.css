@@ -27,7 +27,7 @@ body {
     width: 185px;
     height: 230px;
     position: relative;
-    left: 50px;
+    left: 60px;
     top: -100px;
     background-color: #cc0066;
 }
@@ -217,24 +217,26 @@ body {
         height: 245px;
         position: relative;
         top: 50px;
-        left: 280px;
+        left: 330px;
         background-color: #cc0066;
         text-align: center;
     }
     .fiveDay {
         position: relative;
         top: 20px;
-        left: 280px;
+        left: 300px;
     }
     .onestateinfo { /*Main card*/
-        text-align: center !important;
         width: 400px;
         display: inline-block;
-        position: relative;
-        left: 320px;
-        top: -20px;
-        height: 240px;
-        word-wrap: break-word;
+        left: 340px;
+        height: 360px;
+    }
+    #mainstate {
+        margin-left: 90px;
+    }
+    #mainpara {
+        margin-left: 110px;
     }
     .firstFont {
         font-size: 12px;
