@@ -27,3 +27,9 @@ This Weather Dashboard Application aims to achieve the following:
 * Include AJAX calls
 
 * Store persistent data -- for example, load last searched city forecase when the page reloads.
+
+Website: https://melanierogoff.github.io/Unit6HW/
+
+Screenshot (iPad Preview):
+
+![iPad](assets/ipad.png)
